@@ -1,0 +1,84 @@
+build
+out
+testCompile
+docker/artifact
+docker/config
+.gradle
+.idea
+*.ipr
+*.iws
+*.iml
+*.class
+hs_err_pid*
+gradle.properties
+classes
+.directory
+.okhttpcache
+test.*
+.classpath
+.project
+.settings
+bin
+ObjectFactory.java
+.gradletasknamecache
+logs/*
+db/
+
+### Eclipse ###
+
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+### Netbeans ###
+
+/.nb-gradle/
+/.nb-gradle-properties
+
+.DS_Store
+
+*/logs
+
+.shelf
+
+
