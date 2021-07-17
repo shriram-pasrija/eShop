@@ -59,6 +59,32 @@ internal class OrdersControllerTest {
     }
 
     @Test
+    fun getAllOrderSummary() {
+        val mockResponse1 = OrderSummaryResponse().apply {
+            id = 1
+            items = mutableListOf(
+                AvailableItemResponseDto(1, "Apple", 2, 60.0, 120.0),
+                AvailableItemResponseDto(2, "Orange", 4, 25.0, 100.0)
+            )
+            totalAmount = 220.0
+        }
+
+        val mockResponse2 = OrderSummaryResponse().apply {
+            id = 1
+            items = mutableListOf(
+                AvailableItemResponseDto(1, "Apple", 2, 60.0, 120.0),
+                AvailableItemResponseDto(2, "Orange", 4, 25.0, 100.0)
+            )
+            totalAmount = 220.0
+        }
+
+        val listOfOrders = listOf(mockResponse1, mockResponse2)
+        `when`(ordersService.getAllOrdersSummary()).thenReturn(listOfOrders)
+        mockMvc.perform(get("/orders").contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk).andExpect(content().json(listOfOrders.toJsonString()))
+    }
+
+    @Test
     fun createNewOrder() {
         val mockResponse = OrderSummaryResponse().apply {
             id = 1

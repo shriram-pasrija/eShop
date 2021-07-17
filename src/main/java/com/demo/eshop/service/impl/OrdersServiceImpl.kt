@@ -34,6 +34,12 @@ class OrdersServiceImpl : OrdersService {
         }.orElseThrow { OrderNotFoundException() }
     }
 
+    override fun getAllOrdersSummary(): List<OrderSummaryResponse> {
+        return ordersRepo.findAll().map {
+            it.toOrderSummaryResponse()
+        }.toList()
+    }
+
     override fun createOrder(orderRequest: NewOrderRequestDto): OrderSummaryResponse {
         var billAmount = 0.0
         val orderEntity = OrderEntity()

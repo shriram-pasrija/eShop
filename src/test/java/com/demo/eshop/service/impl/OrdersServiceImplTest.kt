@@ -15,8 +15,7 @@ import com.demo.eshop.exceptions.OrderNotFoundException
 import com.demo.eshop.service.OrdersService
 import com.demo.eshop.util.anyObjectHelper
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -111,10 +110,72 @@ internal class OrdersServiceImplTest {
     }
 
     @Test
+    fun getAllOrderSummarySuccess() {
+        val order1 = OrderSummaryResponse().apply {
+            id = 1
+            items = mutableListOf(
+                AvailableItemResponseDto(1, "Apple", 2, 60.0, 120.0),
+                AvailableItemResponseDto(2, "Orange", 4, 25.0, 100.0)
+            )
+            totalAmount = 220.0
+        }
+
+        val order2 = OrderSummaryResponse().apply {
+            id = 1
+            items = mutableListOf(
+                AvailableItemResponseDto(1, "Apple", 2, 60.0, 120.0),
+                AvailableItemResponseDto(2, "Orange", 4, 25.0, 100.0)
+            )
+            totalAmount = 220.0
+        }
+
+        val expectedResponse = listOf(order1, order2)
+
+        val mockOrderEntity1 = OrderEntity().apply {
+            id = 1
+            amount = 220.0
+            items = mutableListOf(OrderItemEntity().apply {
+                id = 1
+                item = appleItem
+                quantity = 2
+            }, OrderItemEntity().apply {
+                id = 2
+                item = orangeItem
+                quantity = 4
+            })
+        }
+
+        val mockOrderEntity2 = OrderEntity().apply {
+            id = 1
+            amount = 220.0
+            items = mutableListOf(OrderItemEntity().apply {
+                id = 1
+                item = appleItem
+                quantity = 2
+            }, OrderItemEntity().apply {
+                id = 2
+                item = orangeItem
+                quantity = 4
+            })
+        }
+
+        `when`(ordersRepo.findAll()).thenReturn(listOf(mockOrderEntity1, mockOrderEntity2))
+
+        //then
+        val response = ordersService.getAllOrdersSummary()
+        assertNotNull(response)
+        assertTrue(response.size == 2)
+        assertTrue(expectedResponse[0].id == response[0].id)
+        assertTrue(expectedResponse[1].id == response[1].id)
+        assertTrue(expectedResponse[0].totalAmount == response[0].totalAmount)
+        assertTrue(expectedResponse[1].totalAmount == response[1].totalAmount)
+    }
+
+    @Test
     fun getOrderSummaryFailureForOrderThatDoesNotExists() {
         `when`(ordersRepo.findById(anyLong())).thenReturn(Optional.empty())
         //then
-        Assertions.assertThrows(OrderNotFoundException::class.java) {
+        assertThrows(OrderNotFoundException::class.java) {
             ordersService.getOrderSummary(1)
         }
     }

@@ -25,6 +25,13 @@ class OrdersController {
         return ResponseEntity.ok(orderSummaryResponse)
     }
 
+    @GetMapping(value = ["orders"])
+    fun getAllOrdersSummary(): ResponseEntity<List<OrderSummaryResponse>> {
+        logger.info("getting order summary")
+        val allOrdersSummary = ordersService.getAllOrdersSummary()
+        return ResponseEntity.ok(allOrdersSummary)
+    }
+
     @PostMapping(value = ["orders"])
     fun createNewOrder(
         @RequestBody(required = true) request: NewOrderRequestDto
