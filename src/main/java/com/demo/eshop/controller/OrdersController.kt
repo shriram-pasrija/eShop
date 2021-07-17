@@ -20,14 +20,14 @@ class OrdersController {
 
     @GetMapping(value = ["orders/{orderId}"])
     fun getOrderSummary(@PathVariable("orderId") orderId: Long): ResponseEntity<OrderSummaryResponse> {
-        logger.info("getting order summary")
+        logger.info("getting order summary for order Id $orderId")
         val orderSummaryResponse = ordersService.getOrderSummary(orderId)
         return ResponseEntity.ok(orderSummaryResponse)
     }
 
     @GetMapping(value = ["orders"])
     fun getAllOrdersSummary(): ResponseEntity<List<OrderSummaryResponse>> {
-        logger.info("getting order summary")
+        logger.info("getting order summary for all orders")
         val allOrdersSummary = ordersService.getAllOrdersSummary()
         return ResponseEntity.ok(allOrdersSummary)
     }
@@ -36,7 +36,7 @@ class OrdersController {
     fun createNewOrder(
         @RequestBody(required = true) request: NewOrderRequestDto
     ): ResponseEntity<OrderSummaryResponse> {
-        logger.info("getting order summary")
+        logger.info("creating a new order")
         val orderSummaryResponse = ordersService.createOrder(request)
         return ResponseEntity(orderSummaryResponse, HttpStatus.CREATED)
     }
