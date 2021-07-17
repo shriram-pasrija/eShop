@@ -1,8 +1,7 @@
 package com.demo.eshop.service
 
-import com.demo.eshop.dto.NewOrderRequestDto
-import com.demo.eshop.dto.OrderSummaryResponse
-import org.springframework.http.ResponseEntity
+import com.demo.eshop.dto.request.NewOrderRequestDto
+import com.demo.eshop.dto.response.OrderSummaryResponse
 
 interface OrdersService {
     fun createOrder(orderRequest: NewOrderRequestDto): OrderSummaryResponse

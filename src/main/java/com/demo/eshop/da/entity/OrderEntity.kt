@@ -1,7 +1,7 @@
 package com.demo.eshop.da.entity
 
-import com.demo.eshop.dto.AvailableItemResponseDto
-import com.demo.eshop.dto.OrderSummaryResponse
+import com.demo.eshop.dto.response.AvailableItemResponseDto
+import com.demo.eshop.dto.response.OrderSummaryResponse
 import javax.persistence.*
 
 @Entity
@@ -21,16 +21,25 @@ class OrderEntity() {
     )
     var items: MutableList<OrderItemEntity> = mutableListOf()
 
+    @Column(name = "order_amount")
     var amount = 0.0
 }
 
 fun OrderEntity.toOrderSummaryResponse(): OrderSummaryResponse {
-
     this.let {
         return OrderSummaryResponse().apply {
             this.id = it.id
             this.items =
-                it.items.map { o -> AvailableItemResponseDto(o.item.id, o.item.name, o.quantity, o.item.price) }
+                it.items.map { o ->
+                    AvailableItemResponseDto(
+                        o.item.id,
+                        o.item.name,
+                        o.quantity,
+                        o.item.price,
+                        o.amount,
+                        o.offer?.name
+                    )
+                }
             totalAmount = it.amount
         }
     }

@@ -1,9 +1,9 @@
 package com.demo.eshop.controller
 
-import com.demo.eshop.dto.AvailableItemResponseDto
-import com.demo.eshop.dto.ItemRequestDto
-import com.demo.eshop.dto.NewOrderRequestDto
-import com.demo.eshop.dto.OrderSummaryResponse
+import com.demo.eshop.dto.response.AvailableItemResponseDto
+import com.demo.eshop.dto.request.ItemRequestDto
+import com.demo.eshop.dto.request.NewOrderRequestDto
+import com.demo.eshop.dto.response.OrderSummaryResponse
 import com.demo.eshop.exceptions.handler.GlobalExceptionHandler
 import com.demo.eshop.service.OrdersService
 import com.demo.eshop.util.anyObjectHelper
@@ -48,8 +48,8 @@ internal class OrdersControllerTest {
         val mockResponse = OrderSummaryResponse().apply {
             id = 1
             items = mutableListOf(
-                AvailableItemResponseDto(1, "Apple", 2, 60.0),
-                AvailableItemResponseDto(2, "Orange", 4, 25.0)
+                AvailableItemResponseDto(1, "Apple", 2, 60.0, 120.0),
+                AvailableItemResponseDto(2, "Orange", 4, 25.0, 100.0)
             )
             totalAmount = 220.0
         }
@@ -63,8 +63,8 @@ internal class OrdersControllerTest {
         val mockResponse = OrderSummaryResponse().apply {
             id = 1
             items = mutableListOf(
-                AvailableItemResponseDto(1, "Apple", 2, 60.0),
-                AvailableItemResponseDto(2, "Orange", 4, 25.0)
+                AvailableItemResponseDto(1, "Apple", 2, 60.0, 120.0),
+                AvailableItemResponseDto(2, "Orange", 4, 25.0, 100.0)
             )
             totalAmount = 220.0
         }

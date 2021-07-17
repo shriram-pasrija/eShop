@@ -1,4 +1,4 @@
-package com.demo.eshop.dto
+package com.demo.eshop.dto.request
 
 class ItemRequestDto {
     var id: Long = 0

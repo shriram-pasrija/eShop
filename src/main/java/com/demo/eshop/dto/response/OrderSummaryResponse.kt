@@ -1,4 +1,4 @@
-package com.demo.eshop.dto
+package com.demo.eshop.dto.response
 
 class OrderSummaryResponse {
     var id : Long = 0

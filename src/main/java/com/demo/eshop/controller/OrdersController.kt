@@ -1,7 +1,7 @@
 package com.demo.eshop.controller
 
-import com.demo.eshop.dto.NewOrderRequestDto
-import com.demo.eshop.dto.OrderSummaryResponse
+import com.demo.eshop.dto.request.NewOrderRequestDto
+import com.demo.eshop.dto.response.OrderSummaryResponse
 import com.demo.eshop.service.OrdersService
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired

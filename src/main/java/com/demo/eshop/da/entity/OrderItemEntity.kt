@@ -13,4 +13,11 @@ class OrderItemEntity {
     @OneToOne(targetEntity = ItemEntity::class)
     var item: ItemEntity = ItemEntity()
     var quantity: Int = 0
+
+    @OneToOne(targetEntity = OfferEntity::class)
+    @JoinColumn(name = "offer_id")
+    var offer: OfferEntity? = null
+
+    @Column(name = "amount")
+    var amount: Double = 0.0
 }
